@@ -1,7 +1,7 @@
 package com.duoc.Semestral.Service;
 
 import com.duoc.Semestral.Model.Alumno;
-import com.duoc.Semestral.Repositoy.AlumnoRepository;
+import com.duoc.Semestral.Repository.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
