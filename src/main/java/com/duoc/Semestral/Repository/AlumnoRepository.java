@@ -1,6 +1,6 @@
 package com.duoc.Semestral.Repository;
 
-import com.duoc.proyect.model.Alumno;
+import com.duoc.proyect.Model.Alumno;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
