@@ -3,19 +3,34 @@ package com.duoc.Semestral.Service;
 import com.duoc.Semestral.Model.Alumno;
 import com.duoc.Semestral.Repository.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Service
 public class AlumnoService {
     @Autowired
-    AlumnoRepository AlumnoRepository;
+    private AlumnoRepository alumnoRepository;
 
-    public List<Alumno> getAllAlumnos(){return AlumnoRepository.getAllAlumnos();}
+    public List<Alumno> getAlumnos(){
+        return alumnoRepository.findAll();
+    }
 
-    public Alumno getAlumnoById(int id){return AlumnoRepository.getAlumnoById(id);}
+    public Alumno getAlumno(int id){
+        return alumnoRepository.getById(id);
+    }
 
-    public String addAlumno(Alumno alumno){return AlumnoRepository.addAlumno(alumno);}
+    public String addAlumno(Alumno alumno){
+        alumnoRepository.save(alumno);
+        return alumno.toString();
+    }
 
-    public String deleteAlumno(int id){return AlumnoRepository.deleteAlumno(id);}
+    public String deleteAlumno(int id){
+        alumnoRepository.deleteById(id);
+        return "Alumno eliminado";
+    }
 
-    public String updateAlumno(Alumno a){return AlumnoRepository.updateAlumno(a);}
+    public String updateAlumno(Alumno alumno){
+        alumnoRepository.save(alumno);
+        return "Alumno actualizado";
+    }
 }

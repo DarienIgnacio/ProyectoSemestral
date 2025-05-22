@@ -1,27 +1,26 @@
 package com.duoc.Semestral.Controller;
 
 import com.duoc.Semestral.Model.Alumno;
-import com.duoc.Semestral.service.AlumnoService;
+import com.duoc.Semestral.Service.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping ("/alumnos")
 
 public class AlumnoController {
     @Autowired
     AlumnoService alumnoService;
 
     @GetMapping
-    public List<Alumno> getAlumnos() {
-        return alumnoService.getAllAlumnos();
+    public List<Alumno> getAlumnos(){
+        return alumnoService.getAlumnos();
     }
-
     @GetMapping("/{id}")
     public Alumno getAlumno(@PathVariable int id) {
-        return alumnoService.getAlumnoById(id);
+        return alumnoService.getAlumno(id);
     }
 
     @PostMapping
