@@ -8,9 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Entity
+    
 public class Curso {
     private String Nombre;
+    @Id
     private int Id;
     private List<Alumno> listaCurso;
     private List<Materia> listaMateria;
