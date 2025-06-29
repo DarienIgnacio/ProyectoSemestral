@@ -11,8 +11,8 @@ import java.util.Date;
 @Entity
     
 public class Inscripciones {
-    @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id
     private int idInscripcion;
     private String cursoInscrito;
     private Alumno alumno;
