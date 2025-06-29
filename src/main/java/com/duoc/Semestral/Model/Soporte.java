@@ -10,10 +10,12 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Entity
+    
 public class Soporte extends Usuario{
-    private List<TicketSoporte> ticketsAsignados = new ArrayList<>();
+    private List<Usuario> ticketUsuario = new ArrayList<>();
     private String Departemento;
+    @Id
     private int id;
 
 }
