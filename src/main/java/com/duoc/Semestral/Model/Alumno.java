@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Alumno {
     private String nombre;
-    @id
+    @Id
     private int id;
     private String correo;
 
