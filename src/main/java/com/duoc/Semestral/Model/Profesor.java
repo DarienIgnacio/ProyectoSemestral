@@ -1,20 +1,17 @@
 package com.duoc.Semestral.Model;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@PrimaryKeyJoinColumn(name="id")
 
-public class Profesor {
-    private String nombre;
-    @Id
-    private int id;
-    private String correo;
+public class Profesor extends Usuario {
+    private String departamento;
 }

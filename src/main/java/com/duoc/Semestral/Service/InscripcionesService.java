@@ -12,15 +12,15 @@ public class InscripcionesService {
     @Autowired
     private InscripcionRepository inscripcionRepository;
 
-    public List<Inscripciones> getAllInscripciones(){
+    public List<Inscripciones> getAllInscripciones() {
         return inscripcionRepository.findAll();
     }
 
-    public Inscripciones getInscripcionById(int idInscripcion){
-        return inscripcionRepository.getById(idInscripcion);
+    public Inscripciones getInscripcionById(int idInscripcion) {
+        return inscripcionRepository.findById(idInscripcion).orElse(null);
     }
 
-    public String addInscripcion(Inscripciones inscripcion){
+    public String addInscripcion(Inscripciones inscripcion) {
         inscripcionRepository.save(inscripcion);
         return "Inscripcion realizada!";
     }
@@ -30,8 +30,8 @@ public class InscripcionesService {
         return "Inscripcion modificada!";
     }
 
-    public String deleteInscripcion(int id){
+    public String deleteInscripcion(int id) {
         inscripcionRepository.deleteById(id);
-        return "Inscripcion realizada!";
+        return "Inscripción eliminada";
     }
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,11 +14,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-    
 public class Curso {
-    private String Nombre;
+    private String nombre;
     @Id
-    private int Id;
+    private int id;
+
+    @OneToMany
+    @JoinColumn(name = "curso_id")
     private List<Alumno> listaCurso;
+
+    @OneToMany
+    @JoinColumn(name = "curso_id")
     private List<Materia> listaMateria;
 }

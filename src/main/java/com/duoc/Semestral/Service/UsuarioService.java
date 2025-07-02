@@ -17,7 +17,7 @@ public class UsuarioService {
     }
 
     public Usuario getAllUsuario(int id) {
-        return usuarioRepository.getById(id);
+        return usuarioRepository.findById(id).orElse(null);
     }
 
     public String addUsuario(Usuario usuario) {
@@ -32,7 +32,6 @@ public class UsuarioService {
 
     public String deleteUsuario(int id) {
         usuarioRepository.deleteById(id);
-        return "Usuario eliminado con exito!";
+        return "Usuario eliminado";
     }
 }
-

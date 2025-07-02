@@ -17,7 +17,7 @@ public class SoporteService {
     }
 
     public Soporte getSoporteById(int id) {
-        return soporteRepository.getById(id);
+        return soporteRepository.findById(id).orElse(null);
     }
 
     public String addSoporte(Soporte soporte) {
@@ -32,6 +32,6 @@ public class SoporteService {
 
     public String deleteSoporte(int id) {
         soporteRepository.deleteById(id);
-        return "Soporte eliminado con exito!";
+        return "Soporte eliminado";
     }
 }

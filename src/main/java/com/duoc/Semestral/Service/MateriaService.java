@@ -12,27 +12,27 @@ public class MateriaService {
     @Autowired
     private MateriaRepository materiaRepository;
 
-    public List<Materia> getMaterias(){
+    public List<Materia> getMaterias() {
         return materiaRepository.findAll();
     }
 
-    public Materia getMateria(int id){
-        return materiaRepository.getById(id);
+    public Materia getMateria(int id) {
+        return materiaRepository.findById(id).orElse(null);
     }
 
-    public String addMateria(Materia materia){
+    public String addMateria(Materia materia) {
         materiaRepository.save(materia);
         return "Materia adicionado con exito";
     }
 
-    public String updateMateria(Materia materia){
+    public String updateMateria(Materia materia) {
         materiaRepository.save(materia);
         return "Materia actualizado con exito";
     }
 
-    public String deleteMateria(int id){
+    public String deleteMateria(int id) {
         materiaRepository.deleteById(id);
-        return "Materia removida con exito";
+        return "Materia eliminada";
     }
 
 }

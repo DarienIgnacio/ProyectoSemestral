@@ -17,7 +17,7 @@ public class CursoService {
     }
 
     public Curso getCursoById(int id) {
-        return cursoRepository.getById(id);
+        return cursoRepository.findById(id).orElse(null);
     }
 
     public Curso saveCurso(Curso curso) {

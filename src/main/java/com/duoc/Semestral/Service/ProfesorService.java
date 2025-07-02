@@ -17,7 +17,7 @@ public class ProfesorService {
     }
 
     public Profesor getProfesor(int id) {
-        return profesorRepository.getById(id);
+        return profesorRepository.findById(id).orElse(null);
     }
 
     public String addProfesor(Profesor profesor) {
@@ -27,7 +27,7 @@ public class ProfesorService {
 
     public String deleteProfesor(int id) {
         profesorRepository.deleteById(id);
-        return "Profesor eliminado con exito!";
+        return "Profesor eliminado";
     }
 
     public String updateProfesor(Profesor profesor) {
