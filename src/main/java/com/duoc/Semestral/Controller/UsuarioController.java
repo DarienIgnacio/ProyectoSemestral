@@ -1,5 +1,6 @@
 package com.duoc.Semestral.Controller;
 
+import com.duoc.Semestral.Assembler.UsuarioModelAssembler;
 import com.duoc.Semestral.Model.Usuario;
 import com.duoc.Semestral.Service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,6 +9,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +23,18 @@ public class UsuarioController {
         @Autowired
         UsuarioService usuarioService;
 
+        @Autowired
+        UsuarioModelAssembler assembler;
+
         @GetMapping
         @Operation(summary = "Obtener todos los usuarios", description = "Retorna una lista con todos los usuarios registrados en el sistema")
         @ApiResponses(value = {
                         @ApiResponse(responseCode = "200", description = "Lista de usuarios obtenida exitosamente"),
                         @ApiResponse(responseCode = "500", description = "Error interno del servidor")
         })
-        public List<Usuario> getUsuarios() {
-                return usuarioService.getAllUsuarios();
+        public CollectionModel<EntityModel<Usuario>> getUsuarios() {
+                List<Usuario> usuarios = usuarioService.getAllUsuarios();
+                return assembler.toCollectionModel(usuarios);
         }
 
         @GetMapping("/{id}")
@@ -37,9 +44,10 @@ public class UsuarioController {
                         @ApiResponse(responseCode = "404", description = "Usuario no encontrado"),
                         @ApiResponse(responseCode = "500", description = "Error interno del servidor")
         })
-        public Usuario getUsuario(
+        public EntityModel<Usuario> getUsuario(
                         @Parameter(description = "ID único del usuario", required = true) @PathVariable int id) {
-                return usuarioService.getAllUsuario(id);
+                Usuario usuario = usuarioService.getUsuario(id);
+                return assembler.toModel(usuario);
         }
 
         @PostMapping

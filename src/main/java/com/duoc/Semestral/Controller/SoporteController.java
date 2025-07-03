@@ -1,5 +1,6 @@
 package com.duoc.Semestral.Controller;
 
+import com.duoc.Semestral.Assembler.SoporteModelAssembler;
 import com.duoc.Semestral.Model.Soporte;
 import com.duoc.Semestral.Service.SoporteService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,6 +9,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +23,19 @@ public class SoporteController {
         @Autowired
         private SoporteService soporteService;
 
+        @Autowired
+        private SoporteModelAssembler assembler;
+
         @GetMapping
         @Operation(summary = "Obtener todos los soportes", description = "Retorna una lista con todos los tickets de soporte registrados en el sistema")
         @ApiResponses(value = {
                         @ApiResponse(responseCode = "200", description = "Lista de soportes obtenida exitosamente"),
                         @ApiResponse(responseCode = "500", description = "Error interno del servidor")
         })
-        public List<Soporte> getSoportes() {
-                return soporteService.getSoportes();
+        public CollectionModel<EntityModel<Soporte>> getSoportes() {
+                List<Soporte> soportes = soporteService.getSoportes();
+
+                return assembler.toCollectionModel(soportes);
         }
 
         @GetMapping("/{id}")
@@ -37,9 +45,10 @@ public class SoporteController {
                         @ApiResponse(responseCode = "404", description = "Soporte no encontrado"),
                         @ApiResponse(responseCode = "500", description = "Error interno del servidor")
         })
-        public Soporte getSoporteById(
+        public EntityModel<Soporte> getSoporteById(
                         @Parameter(description = "ID único del ticket de soporte", required = true) @PathVariable int id) {
-                return soporteService.getSoporteById(id);
+                Soporte soporte = soporteService.getSoporteById(id);
+                return assembler.toModel(soporte);
         }
 
         @PostMapping

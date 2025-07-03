@@ -20,6 +20,10 @@ public class UsuarioService {
         return usuarioRepository.findById(id).orElse(null);
     }
 
+    public Usuario getUsuario(int id) {
+        return usuarioRepository.findById(id).orElse(null);
+    }
+
     public String addUsuario(Usuario usuario) {
         usuarioRepository.save(usuario);
         return "Usuario creado con exito!";
